@@ -13,15 +13,26 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 
-class BooksApp extends React.Component {
+class BooksApp extends Component {
   state = {
-    books: [],
-    showSearchPage: true
+    books: []
   }
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books: books })
+      this.setState({
+        books: books
+      })
+    })
+  }
+
+  selectBook = (book,shelf) => {
+    BooksAPI.update(book,shelf)
+    const currentBook = this.state.books.filter(b => b.id !== book.id)
+    book.shelf = shelf
+
+    this.setState({
+      books: [...currentBook, book]
     })
   }
 
@@ -30,11 +41,15 @@ class BooksApp extends React.Component {
       <Router>
         <Switch>
           <Route exact path='/' render={props => (
-            <BookList books={this.state.books}/>
+            <BookList
+              header="My Reads"
+              books={this.state.books}
+              selectBook={this.selectBook}
+              />
           )} />
 
           <Route exact path='/search' render={props => (
-            <BookSearch />
+            <BookSearch books={this.state.books} />
           )} />
         </Switch>
       </Router>
