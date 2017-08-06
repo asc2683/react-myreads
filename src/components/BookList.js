@@ -24,7 +24,6 @@ const BookList = (props) => {
           title="Want to Read"
           books={props.books.filter((book) => book.shelf === "wantToRead")}
           selectBook={props.selectBook}
-
         />
         <BookShelf
           title="Read"
@@ -32,12 +31,18 @@ const BookList = (props) => {
           selectBook={props.selectBook}
         />
       </div>
+
+      <div className="open-search">
+        <Link to={'/search'}>Search</Link>
+      </div>
     </div>
   )
 }
 
 BookList.propTypes = {
   books: PropTypes.array.isRequired,
+  selectBook: PropTypes.func.isRequired,
+  header: PropTypes.string.isRequired
 }
 
 export default BookList

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import {
   BrowserRouter as Router,
   Route,
@@ -49,7 +48,9 @@ class BooksApp extends Component {
           )} />
 
           <Route exact path='/search' render={props => (
-            <BookSearch books={this.state.books} />
+            <BookSearch
+              selectBook={this.selectBook}
+            />
           )} />
         </Switch>
       </Router>
