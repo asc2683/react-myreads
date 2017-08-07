@@ -7,28 +7,28 @@ import BookShelf from './BookShelf'
   use functional component when neither state nor life-cycle method is used
 */
 
-const BookList = (props) => {
+const BookList = ({header,books, handleBookShelfChange}) => {
   return (
     <div className="list-books">
       <div className="list-books-title">
-        <h1>{props.header}</h1>
+        <h1>{header}</h1>
       </div>
 
       <div className="list-books-content">
         <BookShelf
           title="Currently Reading"
-          books={props.books.filter((book) => book.shelf === "currentlyReading")}
-          selectBook={props.selectBook}
+          books={books.filter((book) => book.shelf === "currentlyReading")}
+          handleBookShelfChange={handleBookShelfChange}
         />
         <BookShelf
           title="Want to Read"
-          books={props.books.filter((book) => book.shelf === "wantToRead")}
-          selectBook={props.selectBook}
+          books={books.filter((book) => book.shelf === "wantToRead")}
+          handleBookShelfChange={handleBookShelfChange}
         />
         <BookShelf
           title="Read"
-          books={props.books.filter((book) => book.shelf === "read")}
-          selectBook={props.selectBook}
+          books={books.filter((book) => book.shelf === "read")}
+          handleBookShelfChange={handleBookShelfChange}
         />
       </div>
 
@@ -41,7 +41,7 @@ const BookList = (props) => {
 
 BookList.propTypes = {
   books: PropTypes.array.isRequired,
-  selectBook: PropTypes.func.isRequired,
+  handleBookShelfChange: PropTypes.func.isRequired,
   header: PropTypes.string.isRequired
 }
 

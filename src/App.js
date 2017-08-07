@@ -25,14 +25,17 @@ class BooksApp extends Component {
     })
   }
 
-  selectBook = (book,shelf) => {
-    BooksAPI.update(book,shelf)
-    const currentBook = this.state.books.filter(b => b.id !== book.id)
-    book.shelf = shelf
+  handleBookShelfChange = (book, shelf) => {
+    if (book.shelf !== shelf) {
+      BooksAPI.update(book, shelf).then(() => {
+        book.shelf = shelf
 
-    this.setState({
-      books: [...currentBook, book]
-    })
+        // filter out tje book and append it to the end of the list
+        this.setState(state => ({
+          books: state.books.filter(b => b.id !== book.id).concat([book])
+        }))
+      })
+    }
   }
 
   render() {
@@ -43,13 +46,13 @@ class BooksApp extends Component {
             <BookList
               header="My Reads"
               books={this.state.books}
-              selectBook={this.selectBook}
+              handleBookShelfChange={this.handleBookShelfChange}
               />
           )} />
 
           <Route exact path='/search' render={props => (
             <BookSearch
-              selectBook={this.selectBook}
+              handleBookShelfChange={this.handleBookShelfChange}
             />
           )} />
         </Switch>

@@ -33,7 +33,7 @@ class BookSearch extends Component {
               <li key={index}>
                 <Book
                   book={book}
-                  onSelect={this.props.selectBook}
+                  onSelect={this.props.handleBookShelfChange}
                 />
               </li>
               ))}
