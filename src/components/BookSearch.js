@@ -13,7 +13,7 @@ class BookSearch extends Component {
       const verifiedBooks = booksFromSearch.map(book => {
         this.props.books.forEach(bookOnShelf => {
           //check if the book is already on shelf
-          if (book.id == bookOnShelf.id) {
+          if (book.id === bookOnShelf.id) {
             // if yes apply the shelf data to book from search
             book.shelf = bookOnShelf.shelf
           }
