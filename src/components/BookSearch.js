@@ -9,9 +9,21 @@ class BookSearch extends Component {
   }
 
   search = (event) => {
-    BooksAPI.search(event.target.value, 25).then((books) => {
+    BooksAPI.search(event.target.value, 25).then((booksFromSearch) => {
+      const verifiedBooks = booksFromSearch.map(book => {
+        this.props.books.forEach(bookOnShelf => {
+          //check if the book is already on shelf
+          if (book.id == bookOnShelf.id) {
+            // if yes apply the shelf data to book from search
+            book.shelf = bookOnShelf.shelf
+          }
+        })
+
+        return book
+      })
+
       this.setState({
-        searchResult: books
+        searchResult: verifiedBooks
       })
     })
   }
