@@ -4,10 +4,28 @@ import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
 /*
-  use functional component when neither state nor life-cycle method is used
+  use functional stateless component when neither state nor life-cycle method is used
 */
 
-const BookList = ({header,books, handleBookShelfChange}) => {
+const BookList = ({header, books, handleBookShelfChange}) => {
+  const shelves = [
+    {
+      title: "Currently Reading",
+      filter: "currentlyReading",
+      key: 1
+    },
+    {
+      title: "Want to Read",
+      filter: "wantToRead",
+      key: 2
+    },
+    {
+      title: "Read",
+      filter: "read",
+      key: 3
+    }
+  ]
+
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -15,21 +33,14 @@ const BookList = ({header,books, handleBookShelfChange}) => {
       </div>
 
       <div className="list-books-content">
-        <BookShelf
-          title="Currently Reading"
-          books={books.filter((book) => book.shelf === "currentlyReading")}
-          handleBookShelfChange={handleBookShelfChange}
-        />
-        <BookShelf
-          title="Want to Read"
-          books={books.filter((book) => book.shelf === "wantToRead")}
-          handleBookShelfChange={handleBookShelfChange}
-        />
-        <BookShelf
-          title="Read"
-          books={books.filter((book) => book.shelf === "read")}
-          handleBookShelfChange={handleBookShelfChange}
-        />
+        {shelves.map(({title, filter, key}) =>
+          <BookShelf
+            key={key}
+            title={title}
+            books={books.filter((book) => book.shelf === filter)}
+            handleBookShelfChange={handleBookShelfChange}
+          />
+        )}
       </div>
 
       <div className="open-search">

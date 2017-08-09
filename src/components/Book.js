@@ -8,9 +8,6 @@ import PropTypes from 'prop-types'
 class Book extends Component {
   changeShelf = (shelf) => {
     this.props.onSelect(this.props.book, shelf)
-    this.setState({
-      shelf: shelf
-    })
   }
 
   render() {
