@@ -29,14 +29,18 @@ class BookSearch extends Component {
   }
 
   render () {
-    const { searchResult } = this.state
+    const { searchResult, handleBookShelfChange } = this.state
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link className="close-search" to={'/'}>Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" onChange={this.search}/>
+            <input
+              type="text"
+              placeholder="Search by title or author"
+              onChange={this.search}
+            />
           </div>
         </div>
         <div className="search-books-results">
@@ -45,7 +49,7 @@ class BookSearch extends Component {
               <li key={index}>
                 <Book
                   book={book}
-                  onSelect={this.props.handleBookShelfChange}
+                  handleBookShelfChange={this.props.handleBookShelfChange}
                 />
               </li>
               ))}

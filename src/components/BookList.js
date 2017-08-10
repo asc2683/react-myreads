@@ -3,10 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
-/*
-  use functional stateless component when neither state nor life-cycle method is used
-*/
-
 const BookList = ({header, books, handleBookShelfChange}) => {
   const shelves = [
     {
