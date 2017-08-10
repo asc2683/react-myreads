@@ -6,9 +6,6 @@ import PropTypes from 'prop-types'
 */
 
 class Book extends Component {
-  changeShelf = (shelf) => {
-    this.props.onSelect(this.props.book, shelf)
-  }
 
   render() {
     const {title, authors, imageLinks, shelf} = this.props.book
@@ -24,7 +21,7 @@ class Book extends Component {
             }}>
           </div>
           <div className="book-shelf-changer">
-            <select value={shelf} onChange={(e) => this.changeShelf(e.target.value)}>
+            <select value={shelf} onChange={(e) => this.props.onSelect(this.props.book, e.target.value)}>
               <option value="none" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
