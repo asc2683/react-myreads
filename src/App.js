@@ -4,17 +4,18 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-
 import BookList from './components/BookList'
 import BookSearch from './components/BookSearch'
-
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
-
 class BooksApp extends Component {
-  state = {
-    books: []
+  constructor () {
+    super()
+    this.state = {
+      books: []
+    }
+    this.handleBookShelfChange = this.handleBookShelfChange.bind(this)
   }
 
   componentDidMount() {
@@ -47,15 +48,15 @@ class BooksApp extends Component {
               header="My Reads"
               books={this.state.books}
               handleBookShelfChange={this.handleBookShelfChange}
-              />
-          )} />
+            />
+          )}/>
 
           <Route exact path='/search' render={props => (
             <BookSearch
               books={this.state.books}
               handleBookShelfChange={this.handleBookShelfChange}
             />
-          )} />
+          )}/>
         </Switch>
       </Router>
     )

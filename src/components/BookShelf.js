@@ -1,10 +1,6 @@
 import React from 'react'
 import Book from './Book'
 
-/*
-  use functional component when neither state nor life-cycle method is used
-*/
-
 const BookShelf = ({title, books, handleBookShelfChange}) => {
   return (
     <div className="bookShelf">
@@ -15,7 +11,7 @@ const BookShelf = ({title, books, handleBookShelfChange}) => {
             <li key={index}>
               <Book
                 book={book}
-                onSelect={handleBookShelfChange}
+                handleBookShelfChange={handleBookShelfChange}
               />
             </li>
           ))}
