@@ -18,7 +18,7 @@ class BooksApp extends Component {
     this.handleBookShelfChange = this.handleBookShelfChange.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     BooksAPI.getAll().then((books) => {
       this.setState({
         books: books
@@ -39,7 +39,7 @@ class BooksApp extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <Router>
         <Switch>

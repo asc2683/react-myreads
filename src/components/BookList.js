@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
-const BookList = ({header, books, handleBookShelfChange}) => {
+const BookList = ({ header, books, handleBookShelfChange }) => {
   const shelves = [
     {
       title: "Currently Reading",
@@ -26,7 +26,7 @@ const BookList = ({header, books, handleBookShelfChange}) => {
       </div>
 
       <div className="list-books-content">
-        {shelves.map(({title, filter, key}, i) =>
+        {shelves.map(({ title, filter, key }, i) =>
           <BookShelf
             key={i}
             title={title}
